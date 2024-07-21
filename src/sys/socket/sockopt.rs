@@ -1079,6 +1079,32 @@ sockopt_impl!(
     libc::IPV6_ORIGDSTADDR,
     bool
 );
+#[cfg(any(linux_android, target_os = "freebsd"))]
+#[cfg(feature = "net")]
+sockopt_impl!(
+    #[cfg_attr(docsrs, doc(cfg(feature = "net")))]
+    /// Valid only for raw sockets. When it is enabled, sent packets must contain
+    /// an IP header. When receiving packets, the IP header is always included in
+    /// the packet.
+    IpHdrIncl,
+    Both,
+    libc::IPPROTO_IP,
+    libc::IP_HDRINCL,
+    bool
+);
+#[cfg(any(linux_android, target_os = "freebsd"))]
+#[cfg(feature = "net")]
+sockopt_impl!(
+    #[cfg_attr(docsrs, doc(cfg(feature = "net")))]
+    /// Valid only for raw sockets. When it is enabled, sent packets must contain
+    /// an IP header. When receiving packets, the IP header is always included in
+    /// the packet.
+    Ipv6HdrIncl,
+    Both,
+    libc::IPPROTO_IPV6,
+    libc::IPV6_HDRINCL,
+    bool
+);
 #[cfg(apple_targets)]
 sockopt_impl!(
     /// Set "don't fragment packet" flag on the IP packet.
