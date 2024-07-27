@@ -1101,8 +1101,8 @@ sockopt_impl!(
     /// the packet.
     Ipv6HdrIncl,
     Both,
-    libc::IPPROTO_IPV6,
-    libc::IP_HDRINCL,
+    libc::IPPROTO_RAW,
+    libc::IPV6_HDRINCL,
     bool
 );
 #[cfg(apple_targets)]
